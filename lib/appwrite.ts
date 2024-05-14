@@ -17,6 +17,16 @@ export const appwriteConfig = {
   storageId: "6641c264001cf0b5f3df",
 };
 
+const {
+  storageId,
+  endpoint,
+  platform,
+  projectId,
+  databaseId,
+  userCollectionId,
+  videoCollectionId,
+} = appwriteConfig;
+
 // Init your React Native SDK
 export const client = new Client();
 
@@ -25,9 +35,9 @@ const avatars = new Avatars(client);
 const databases = new Databases(client);
 
 client
-  .setEndpoint(appwriteConfig.endpoint) // Your Appwrite Endpoint
-  .setProject(appwriteConfig.projectId) // Your project ID
-  .setPlatform(appwriteConfig.platform); // Your application ID or bundle ID.
+  .setEndpoint(endpoint) // Your Appwrite Endpoint
+  .setProject(projectId) // Your project ID
+  .setPlatform(platform); // Your application ID or bundle ID.
 
 export const createUser = async (
   email: string,
@@ -42,8 +52,8 @@ export const createUser = async (
     const avatarUrl = await avatars.getInitials(newAccount.username);
 
     const newUser = await databases.createDocument(
-      appwriteConfig.databaseId,
-      appwriteConfig.userCollectionId,
+      databaseId,
+      userCollectionId,
       ID.unique(),
       { accountId: newAccount.$id, email, username: name, avatar: avatarUrl }
     );
@@ -75,8 +85,8 @@ export const getCurrentUser = async () => {
     if (!currentAccount) throw Error;
 
     const currentUser = await databases.listDocuments(
-      appwriteConfig.databaseId,
-      appwriteConfig.userCollectionId,
+      databaseId,
+      userCollectionId,
       [Query.equal("accountId", currentAccount.$id)]
     );
 
@@ -85,5 +95,26 @@ export const getCurrentUser = async () => {
     return currentUser.documents[0];
   } catch (error) {
     console.error("Current User fetch error", error);
+  }
+};
+
+export const getAllPosts = async () => {
+  try {
+    const posts = await databases.listDocuments(databaseId, videoCollectionId);
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error as any);
+  }
+};
+export const getLatestPosts = async () => {
+  try {
+    const posts = await databases.listDocuments(databaseId, videoCollectionId, [
+      Query.orderDesc("$createdAt", Query.limit(7)),
+    ]);
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error as any);
   }
 };
