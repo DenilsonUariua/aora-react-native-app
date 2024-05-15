@@ -2,7 +2,7 @@ import { TPost } from "@/types";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
 
-export const useAppwrite = (fn: () => any) => {
+export const useAppwrite = (fn: (value?: any) => any) => {
   const [data, setData] = useState<TPost[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 

@@ -1,18 +1,33 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { icons } from "@/constants";
+import { Video, ResizeMode } from "expo-av";
+import { likeVideo } from "@/lib";
 
 type VideoCardProps = {
+  $id: string;
   title: string;
   thumbnail: string;
   video: string;
+  liked: string[];
   creator: {
     username: string;
     avatar: string;
+    $id: string;
   };
 };
 
-const VideoCard = ({ creator, title, thumbnail, video }: VideoCardProps) => {
+const VideoCard = ({
+  creator,
+  title,
+  thumbnail,
+  video,
+  $id,
+  liked,
+}: VideoCardProps) => {
+
+  console.log("LIked", liked);
+  
   const [play, setPlay] = useState(false);
   return (
     <View className="flex-col items-center px-4 mb-14">
@@ -46,25 +61,55 @@ const VideoCard = ({ creator, title, thumbnail, video }: VideoCardProps) => {
       </View>
 
       {play ? (
-        <Text className="text-white">Playing</Text>
+        <Video
+          source={{ uri: video }}
+          className="w-full h-60 rounded-xl mt-3 bg-white/10"
+          resizeMode={ResizeMode.CONTAIN}
+          useNativeControls
+          shouldPlay
+          onPlaybackStatusUpdate={(status) => {
+            if (status.isLoaded) {
+              if (status.didJustFinish) {
+                setPlay(false);
+              }
+            }
+          }}
+        />
       ) : (
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => setPlay(true)}
-          className="w-full h-60 rounded-xl mt-3 relative flex justify-center items-center"
-        >
-          <Image
-            source={{ uri: thumbnail }}
-            className="w-full h-full rounded-xl mt-3"
-            resizeMode="cover"
-          />
+        <>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => setPlay(true)}
+            className="w-full h-60 rounded-xl mt-3 relative flex justify-center items-center"
+          >
+            <Image
+              source={{ uri: thumbnail }}
+              className="w-full h-full rounded-xl mt-3"
+              resizeMode="cover"
+            />
 
-          <Image
-            source={icons.play}
-            className="w-12 h-12 absolute"
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
+            <Image
+              source={icons.play}
+              className="w-12 h-12 absolute"
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={async () => {
+              if (liked.find((userID) => userID === creator.$id)) {
+                return;
+              }
+              await likeVideo(creator.$id, liked, $id);
+            }}
+            className="absolute bottom-2 right-8 w-12 h-12"
+          >
+            <Image
+              source={icons.plus}
+              className="w-12 h-12 "
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </>
       )}
     </View>
   );

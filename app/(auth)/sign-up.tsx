@@ -7,7 +7,7 @@ import { images } from "../../constants";
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/customButton";
 import { Link, router } from "expo-router";
-import { client, createUser } from "@/lib";
+import { client, createUser, getCurrentUser } from "@/lib";
 import { useGlobalContext } from "@/context/GlobalProvider";
 
 const SignUp = () => {
@@ -26,8 +26,8 @@ const SignUp = () => {
       return;
     }
     try {
-      const res = await createUser(form.email, form.password, form.username);
-      console.log("this is the res ", res);
+      await createUser(form.email, form.password, form.username);
+      const res = await getCurrentUser();
       setUser(res);
       setIsLoggedIn(true);
       setIsSubmitting(false);

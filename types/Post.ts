@@ -19,4 +19,5 @@ export type TPost = {
   thumbnail: string;
   title: string;
   video: string;
+  liked: string[];
 };

@@ -23,7 +23,8 @@ const Home = () => {
   const { user } = useGlobalContext();
   const [refreshing, setRefreshing] = useState(false);
   const { data: posts, refetch } = useAppwrite(getAllPosts);
-  const { data: latestPosts, refetch: refetchLatest } = useAppwrite(getLatestPosts);
+  const { data: latestPosts, refetch: refetchLatest } =
+    useAppwrite(getLatestPosts);
   const refresh = async () => {
     setRefreshing(true);
     await refetch();
@@ -55,11 +56,8 @@ const Home = () => {
               </View>
             </View>
             <SearchInput
-              value={undefined}
               placeholder="Search for a video topic..."
-              handleChangeText={function (e: string): void {
-                throw new Error("Function not implemented.");
-              }}
+
             />
             <View className="w-full flex-1 pb-8">
               <Text className="text-gray-100 text-lg font-pregular ">

@@ -51,35 +51,40 @@ const TrendingItem = ({
       }
       duration={500}
     >
-      {play ? (
+       {play ? (
         <Video
           source={{ uri: item.video }}
-          className="w-52 h-72 rounded-xl"
+          className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
           shouldPlay
           onPlaybackStatusUpdate={(status) => {
             if (status.isLoaded) {
+              
               if (status.didJustFinish) {
                 setPlay(false);
               }
             }
+              
           }}
         />
       ) : (
         <TouchableOpacity
-          className="relative justify-center items-center"
-          activeOpacity={0.5}
+          className="relative flex justify-center items-center"
+          activeOpacity={0.7}
           onPress={() => setPlay(true)}
         >
           <ImageBackground
-            source={{ uri: activeItem.thumbnail }}
-            className="w-52 h-72 rounded-md  my-5 overflow-hidden shadow-lg shadow-black/40"
+            source={{
+              uri: item.thumbnail,
+            }}
+            className="w-52 h-72 rounded-[33px] my-5 overflow-hidden shadow-lg shadow-black/40"
             resizeMode="cover"
           />
+
           <Image
-            className="w-12 h-12 absolute"
             source={icons.play}
+            className="w-12 h-12 absolute"
             resizeMode="contain"
           />
         </TouchableOpacity>
