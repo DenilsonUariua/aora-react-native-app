@@ -1,50 +1,47 @@
-# Welcome to your Expo app 👋
+# Aora
+This is a video sharing application that allows users to like and see other users videos on the platform
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+### Download
+- You can find a downloadable apk under the releases section on this repo
+- Or you can follow this link to download the apk: 
 
-## Get started
 
-1. Install dependencies
+### Features
+👉 Onboarding Screen: Engaging graphics and clear instructions welcome users to the app.
 
-   ```bash
-   npm install
-   ```
+👉 Robust Authentication & Authorization System: Secure email login safeguards user accounts.
 
-2. Start the app
+👉 Dynamic Home Screen with Animated Flat List: Smoothly animated flat list showcases the latest videos for seamless browsing.
 
-   ```bash
-    npx expo start
-   ```
+👉 Pull-to-Refresh Functionality: Users can refresh content with a simple pull gesture for up-to-date information.
 
-In the output, you'll find options to open the app in a
+👉 Full-Text Search Capability: Efficiently search through videos with real-time suggestions and instant results.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+👉 Tab Navigation: Navigate between sections like Home, Search, and Profile with ease using tab navigation.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+👉 Post Creation Screen for Uploading Media: Upload video and image posts directly from the app with integrated media selection.
 
-## Get a fresh project
+👉 Profile Screen with Detailed Insights: View account details and activity, including uploaded videos and follower count, for a personalized experience.
 
-When you're ready, run:
+👉 Responsiveness: Smooth performance and adaptability across various devices and screen sizes for a consistent user experience.
 
-```bash
-npm run reset-project
-```
+👉 Animations: Dynamic animations using the Animatable library to enhance user interaction and engagement throughout the app's UI.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+and many more, including code architecture and reusability
 
-## Learn more
+### Technologies Used
+- React native - app building
+- Appwrite - database, user logins & video storage
+- Expo - Building the app into an apk
+- Animatable - animation
+- Nativewind - styling
 
-To learn more about developing your project with Expo, look at the following resources:
+### Splash Screen
+![Media](https://github.com/user-attachments/assets/eb514520-8d37-452f-95b1-deaa661e24e6)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/learn): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Login Screen
+![Media (1)](https://github.com/user-attachments/assets/4cf8ef08-f321-4156-954e-f1d31e16efb2)
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Authors
+- Adrian Hajdin  
+- Denilson Uariua
