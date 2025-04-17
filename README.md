@@ -3,7 +3,7 @@ This is a video sharing application that allows users to like and see other user
 
 ### Download
 - You can find a downloadable apk under the releases section on this repo
-- Or you can follow this link to download the apk: 
+- Or you can follow this link to download the apk: https://expo.dev/artifacts/eas/nTihKEmjuNpoCPSR5bGnaK.apk
 
 
 ### Features
