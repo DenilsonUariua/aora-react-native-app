@@ -17,5 +17,10 @@
             "distribution": "internal"
         },
         "production": {}
+    },
+    "cli": {
+        "version": ">= 12.5.1",
+        "appVersionSource": "remote",
+        "requireCommit": true
     }
 }
